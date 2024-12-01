@@ -33,4 +33,8 @@ public class PairMemory {
         }
         return true;
     }
+
+    public void removeAll() {
+        pairInfos = new ArrayList<>();
+    }
 }

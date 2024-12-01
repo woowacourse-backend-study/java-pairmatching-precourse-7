@@ -2,6 +2,7 @@ package pairmatching;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Pair {
     private List<Crew> crews;
@@ -51,11 +52,10 @@ public class Pair {
 
     @Override
     public String toString() {
-        return "Pair{" +
-                "crews=" + crews +
-                ", course=" + course +
-                ", level=" + level +
-                ", mission=" + mission +
-                '}';
+        StringJoiner stringJoiner = new StringJoiner(" : ");
+        for (Crew crew : crews) {
+            stringJoiner.add(crew.toString());
+        }
+        return stringJoiner.toString();
     }
 }

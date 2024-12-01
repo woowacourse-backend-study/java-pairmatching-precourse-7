@@ -19,4 +19,13 @@ public enum Level {
         this.missions = new ArrayList<>();
         this.missions.addAll(Arrays.asList(missions));
     }
+
+    public static Level findByName(String levelName) {
+        for (Level level : Level.values()) {
+            if (level.name.equals(levelName)) {
+                return level;
+            }
+        }
+        throw new RuntimeException("찾을 수 없는 값입니다");
+    }
 }

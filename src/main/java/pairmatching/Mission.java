@@ -15,4 +15,13 @@ public enum Mission {
     Mission(String name) {
         this.name = name;
     }
+
+    public static Mission findByName(String missionName) {
+        for (Mission mission : Mission.values()) {
+            if (mission.name.equals(missionName)) {
+                return mission;
+            }
+        }
+        throw new RuntimeException("찾을 수 없는 값입니다");
+    }
 }
