@@ -2,7 +2,6 @@ package pairmatching;
 
 import java.util.List;
 import pairmatching.io.InputView;
-import pairmatching.io.MatchingSelect;
 import pairmatching.io.OutputView;
 
 public class PairMachine {
@@ -15,7 +14,7 @@ public class PairMachine {
                        List<Crew> frontendCrews) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.pairFactory = new PairFactory(backendCrews, frontendCrews);
+        this.pairFactory = new PairFactory(backendCrews, frontendCrews, inputView, outputView);
     }
 
     public void process() {
@@ -37,8 +36,8 @@ public class PairMachine {
     }
 
     private void matchingPairs() {
-        MatchingSelect matchingSelect = inputView.inputMatchingFunction();
-        List<Pair> resultPair = pairFactory.makePairs(matchingSelect);
+
+        List<Pair> resultPair = pairFactory.makePairs();
         outputView.outputPair(resultPair);
         pairFactory.endPair(resultPair);
     }

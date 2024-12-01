@@ -28,4 +28,13 @@ public enum Level {
         }
         throw new RuntimeException("찾을 수 없는 값입니다");
     }
+
+    public static boolean isExist(String levelName) {
+        for (Level level : Level.values()) {
+            if (level.name.equals(levelName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

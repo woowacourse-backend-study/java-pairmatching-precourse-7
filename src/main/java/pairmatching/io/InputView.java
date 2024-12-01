@@ -1,6 +1,9 @@
 package pairmatching.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.Course;
+import pairmatching.Level;
+import pairmatching.Mission;
 
 public class InputView {
 
@@ -27,23 +30,40 @@ public class InputView {
     }
 
     public MatchingSelect inputMatchingFunction() {
-        System.out.println("""
-                과정: 백엔드 | 프론트엔드
-                미션:
-                  - 레벨1: 자동차경주 | 로또 | 숫자야구게임
-                  - 레벨2: 장바구니 | 결제 | 지하철노선도
-                  - 레벨3:\s
-                  - 레벨4: 성능개선 | 배포
-                  - 레벨5:\s
-                ############################################
-                과정, 레벨, 미션을 선택하세요.
-                ex) 백엔드, 레벨1, 자동차경주""");
-        String input = Console.readLine();
-        System.out.println();
-        String[] inputs = input.split(",");
-        for (int i = 0; i < inputs.length; i++) {
-            inputs[i] = inputs[i].trim();
+        while (true) {
+            System.out.println("""
+                    과정: 백엔드 | 프론트엔드
+                    미션:
+                      - 레벨1: 자동차경주 | 로또 | 숫자야구게임
+                      - 레벨2: 장바구니 | 결제 | 지하철노선도
+                      - 레벨3:\s
+                      - 레벨4: 성능개선 | 배포
+                      - 레벨5:\s
+                    ############################################
+                    과정, 레벨, 미션을 선택하세요.
+                    ex) 백엔드, 레벨1, 자동차경주""");
+            String input = Console.readLine();
+            System.out.println();
+            String[] inputs = input.split(",");
+            for (int i = 0; i < inputs.length; i++) {
+                inputs[i] = inputs[i].trim();
+            }
+            if (!validateMatchingInput(inputs[0], inputs[1], inputs[2])) {
+                continue;
+            }
+            return new MatchingSelect(inputs[0], inputs[1], inputs[2]);
         }
-        return new MatchingSelect(inputs[0], inputs[1], inputs[2]);
+
     }
+
+    private boolean validateMatchingInput(String courName, String levelName, String missionName) {
+        if (!Course.isExist(courName) || !Level.isExist(levelName) ||
+                !Mission.isExist(missionName)) {
+            System.out.println("[ERROR] 찾을 수 없는 값입니다.");
+            return false;
+        }
+        return true;
+    }
+
+
 }

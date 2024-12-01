@@ -18,4 +18,13 @@ public enum Course {
         }
         throw new RuntimeException("찾을 수 없는 값입니다");
     }
+
+    public static boolean isExist(String name) {
+        for (Course course : Course.values()) {
+            if (course.name.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

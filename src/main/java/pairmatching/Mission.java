@@ -24,4 +24,13 @@ public enum Mission {
         }
         throw new RuntimeException("찾을 수 없는 값입니다");
     }
+
+    public static boolean isExist(String missionName) {
+        for (Mission mission : Mission.values()) {
+            if (mission.name.equals(missionName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
