@@ -34,21 +34,15 @@ public class PairMatchingService {
         List<Crew> crews = CrewRepository.findAllByCourse(request.course());
         validateCrewCount(crews);
 
-        List<PairCrews> result = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
             List<PairCrews> generatedCrews = generatePairs(crews);
             List<PairCrews> savedPairCrews = PairRepository.findPairCrewsByLevel(request.mission().getLevel());
             if (!isExistDuplicate(savedPairCrews, generatedCrews)) {
-                result = generatedCrews;
-                break;
+                PairRepository.save(request.course(), request.mission(), generatedCrews);
+                return generatedCrews;
             }
         }
-
-        if (result.isEmpty()) {
-            throw new CustomException(ExceptionMessage.FAILED_TO_MATCHING.getMessage());
-        }
-        PairRepository.save(request.course(), request.mission(), result);
-        return result;
+        throw new CustomException(ExceptionMessage.FAILED_TO_MATCHING.getMessage());
     }
 
     private boolean isExistDuplicate(List<PairCrews> saved, List<PairCrews> generated) {
