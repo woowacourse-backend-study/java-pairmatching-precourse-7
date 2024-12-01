@@ -14,7 +14,11 @@ import java.util.List;
 
 public class PairMatchingService {
     public List<PairCrews> getPairs(PairMatchingRequest request) {
-        return PairRepository.findPairCrews(request.course(), request.mission());
+        List<PairCrews> pairCrews = PairRepository.findPairCrews(request.course(), request.mission());
+        if (pairCrews == null) {
+            throw new CustomException(ExceptionMessage.NO_EXIST_MATCHING.getMessage());
+        }
+        return pairCrews;
     }
 
     public void reset() {

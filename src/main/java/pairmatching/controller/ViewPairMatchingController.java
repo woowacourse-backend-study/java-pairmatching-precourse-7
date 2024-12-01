@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.domain.PairCrews;
+import pairmatching.infrastructure.CustomException;
 import pairmatching.service.PairMatchingService;
 import pairmatching.service.dto.PairMatchingRequest;
 import pairmatching.view.InputView;
@@ -29,8 +30,12 @@ public class ViewPairMatchingController implements Controllable {
     @Override
     public void process() {
         CourseMissionInput courseMissionInput = readInput();
-        List<PairCrews> pairs = pairMatchingService.getPairs(PairMatchingRequest.of(courseMissionInput));
-        outputView.printPairs(pairs);
+        try {
+            List<PairCrews> pairs = pairMatchingService.getPairs(PairMatchingRequest.of(courseMissionInput));
+            outputView.printPairs(pairs);
+        } catch (CustomException e) {
+            outputView.printMessage(e.getMessage());
+        }
     }
 
     private CourseMissionInput readInput() {
