@@ -41,8 +41,8 @@
 
 ## 파일 입력
 
-- 페어 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러온다.
-- `src/main/resources/backend-crew.md`과 `src/main/resources/frontend-crew.md` 파일을 이용한다.
+- [x] 페어 매칭에 필요한 크루들의 이름을 파일 입출력을 통해 불러온다.
+- [x] `src/main/resources/backend-crew.md`과 `src/main/resources/frontend-crew.md` 파일을 이용한다.
 
 ## 입출력
 
@@ -129,3 +129,5 @@
 # 예외 처리
 
 - [ ] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, `[ERROR]`로 시작하는 에러 메시지를 출력 후 **해당 부분부터 다시 입력**을 받는다.
+
+# 같은 레벨에서 이미 매칭된 이력이 있는 경우
