@@ -40,9 +40,14 @@ public class PairFactory {
     public List<Pair> makePairs(Course course, Level level, Mission mission) {
         List<Crew> crews = getCoursePair(course);
         List<Pair> pairs;
-
+        List<String> stringList = new ArrayList<>();
+        for (Crew crew : crews) {
+            stringList.add(crew.getName());
+        }
+        List<String> shuffle = Randoms.shuffle(stringList);
+        crews = shuffle.stream().map(Crew::new).toList();
         do {
-            crews = Randoms.shuffle(crews);
+            //crews = Randoms.shuffle(crews);
             pairs = makePair(crews, course, level, mission);
 
         } while (!pairMemory.validatePair(pairs, level));
