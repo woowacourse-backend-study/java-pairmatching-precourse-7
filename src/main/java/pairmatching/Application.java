@@ -16,19 +16,23 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        String select = inputView.inputManFunction();
-        if (select.equals("1")) {
-            MatchingSelect matchingSelect = inputView.inputMatchingFunction();
-            List<Pair> resultPair = pairFactory.makePairs(matchingSelect);
-            outputView.outputPair(resultPair);
-            pairFactory.endPair(resultPair);
+        while (true) {
+            String select = inputView.inputManFunction();
+            if (select.equals("Q")) {
+                return;
+            } else if (select.equals("1")) {
+                MatchingSelect matchingSelect = inputView.inputMatchingFunction();
+                List<Pair> resultPair = pairFactory.makePairs(matchingSelect);
+                outputView.outputPair(resultPair);
+                pairFactory.endPair(resultPair);
 
-        } else if (select.equals("2")) {
-            List<Pair> pairs = pairFactory.getPairs();
-            outputView.outputPair(pairs);
-        } else if (select.equals("3")) {
-            outputView.outputReset();
-            pairFactory.resetPairs();
+            } else if (select.equals("2")) {
+                List<Pair> pairs = pairFactory.getPairs();
+                outputView.outputPair(pairs);
+            } else if (select.equals("3")) {
+                outputView.outputReset();
+                pairFactory.resetPairs();
+            }
         }
 
 
