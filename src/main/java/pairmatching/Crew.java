@@ -9,6 +9,10 @@ public class Crew {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -24,5 +28,12 @@ public class Crew {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Crew{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
