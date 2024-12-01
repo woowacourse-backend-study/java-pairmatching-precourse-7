@@ -1,4 +1,4 @@
-package pairmatching.domain;
+package pairmatching.domain.vo;
 
 import pairmatching.infrastructure.CustomException;
 import pairmatching.infrastructure.ExceptionMessage;
@@ -13,6 +13,10 @@ public enum Level {
     LEVEL5("레벨5");
 
     private String name;
+
+    public String getName() {
+        return name;
+    }
 
     Level(String name) {
         this.name = name;
